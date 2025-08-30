@@ -4,6 +4,8 @@ import { BE } from 'be-enhanced/BE.js';
 import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
 /** @import {Actions, PAP, AllProps, AP} from './ts-refs/be-giddy/types' */;
+import {getCount} from 'trans-render/dss/tref/getCount.js';
+
 
 /**
  * @implements {Actions}
@@ -59,12 +61,14 @@ class BeGiddy extends BE {
     autoGen(self) {
         const { ids, enhancedElement } = self;
         const {parentElement} = enhancedElement;
+        
         if(parentElement === null) throw 404;
         const allChildren = Array.from(parentElement.querySelectorAll('*'));
         /**
          * @type {{[key: string]: string}}
          */
         const idLookup = {};
+        const base = 'be-giddy';
         for(const child of allChildren){
             const attrs = child.attributes;
             for(const attr of attrs){
@@ -75,7 +79,7 @@ class BeGiddy extends BE {
                     const token = `{{${id}}}`;
                     if(!value.includes(token)) continue;
                     if(!(id in idLookup)){
-                        idLookup[id] = crypto.randomUUID();
+                        idLookup[id] = `${base}-${getCount(base)}`;
                     }
                     const newValue = value.replaceAll(token, idLookup[id]);
                     child.setAttribute(name.substring(5), newValue);
