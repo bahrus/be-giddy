@@ -1,0 +1,20 @@
+{
+  "name": "be-giddy",
+  "version": "0.0.0",
+  "description": "Auto generate id's and other attributes",
+  "homepage": "https://github.com/bahrus/be-giddy#readme",
+  "bugs": {
+    "url": "https://github.com/bahrus/be-giddy/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bahrus/be-giddy.git"
+  },
+  "license": "MIT",
+  "author": "Bruce B. Anderson <anderson.bruce.b@gmail.com>",
+  "type": "module",
+  "main": "be-giddy.js",
+  "scripts": {
+    "test": "test playwright"
+  }
+}
