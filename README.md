@@ -2,13 +2,16 @@
 Auto generate id's and other attributes
 
 ```html
-<fieldset defer-be-switched disabled 🤪>
+<fieldset disabled 🤪>
     <label data-for="{{foo}}">foo:</label>
     <input 
         class=my-class 
         part=my-part 
         type=checkbox 
         data-id="{{@|%.# foo}}">
+    <template defer-be-switched="on when #{{foo}}">
+        foo is checked
+    </template>
 </fieldset>
 ```
 
@@ -25,5 +28,8 @@ generates:
         type=checkbox 
         data-id=foo
         id="some-unique-id">
+    <template be-switched="on when #some-unique-id">
+        foo is checked
+    </template>
 </fieldset>
 ```
