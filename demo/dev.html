@@ -3,11 +3,18 @@
 <head>
     <meta charset="UTF-16">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Basic</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import '/🤪.js';
+    </script>
 </head>
 <body>
-    <script>
-        document.body.setAttribute('🤪', 'hello');
-    </script>
+    <fieldset disabled>
+        <label data-for={{isHappy}}>Is Happy:</label>
+        <input data-id={{isHappy}}>
+        <label data-for={{isGiddy}}>Is Giddy:</label>
+        <input data-id={{isGiddy}}  🤪>
+    </fieldset>
 </body>
 </html>

@@ -17,6 +17,9 @@ class BeGiddy extends BE {
         propInfo: {
             ...propInfo,
             idString: {},
+        },
+        compacts: {
+            when_idString_changes_call_parseIdString: 0,
         }
     }
 
