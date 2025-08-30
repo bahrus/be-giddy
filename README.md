@@ -46,7 +46,7 @@ the HTML gets modified to the following:
         part=my-part 
         type=checkbox 
         data-id="{{@|%.# foo}}">
-    <template defer-be-switched="on when #{{foo}}" >
+    <template defer-be-switched="on when #{{foo}}" 🤪>
         foo is checked
     </template>
 </fieldset>

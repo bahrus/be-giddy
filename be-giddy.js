@@ -10,5 +10,29 @@ import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
  * 
  */
 class BeGiddy extends BE {
-    
+    /**
+     * @type {BEConfig<AP & BEAllProps, Actions & IEnhancement>}
+     */
+    static config = {
+        propInfo: {
+            ...propInfo,
+            idString: {},
+        }
+    }
+
+    /**
+     * 
+     * @param {AP & BEAllProps} self 
+     */
+    parseIdString(self) {
+        const { idString, enhancedElement } = self;
+        if(idString){
+            throw 'NI';
+        }
+        throw 'NI';
+        return /** @type {PAP} */ ({})
+    }
 }
+
+await BeGiddy.bootUp();
+export { BeGiddy };
