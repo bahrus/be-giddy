@@ -1,5 +1,7 @@
 # be-giddy (🤪) [TODO]
 
+"zany" emoji.
+
 Managing uniqueness of DOM is challenging, especially outside any ShadowDOM.  be-giddy auto generates such id's (and other attributes) in a predictable way. This is a userland implementation of [this proposal](https://github.com/whatwg/html/issues/11585).
 
 However, due to the plague of [platform](https://github.com/WICG/webcomponents/issues/809) [paralysis](https://github.com/whatwg/dom/issues/533), there are significant limitations / differences:
@@ -37,14 +39,14 @@ the HTML gets modified to the following:
 
 
 ```html
-<fieldset disabled 🤪=foo>
+<fieldset disabled >
     <label data-for={{foo}}>foo:</label>
     <input 
         class=my-class 
         part=my-part 
         type=checkbox 
         data-id="{{@|%.# foo}}">
-    <template defer-be-switched="on when #{{foo}}">
+    <template defer-be-switched="on when #{{foo}}" >
         foo is checked
     </template>
 </fieldset>
