@@ -6,6 +6,7 @@ However, due to the plague of [platform](https://github.com/WICG/webcomponents/i
 
 - ID's will not be reliably reproducible, and can differ even if the html structure is the same
 - Rather than adorning the parent element that contains the scoped elements that need id's generated, for 100% reliability, add the enhancement to the last child of that parent.  
+- No support for inherited auto generated id "constants" from higher level tags (since don't know when fragment gets connected the live DOM tree). 
 
 
 
