@@ -32,8 +32,22 @@ class BeGiddy extends BE {
         if(idString){
             throw 'NI';
         }
-        throw 'NI';
-        return /** @type {PAP} */ ({})
+        const {parentElement} = enhancedElement;
+        if(parentElement === null) return;
+        const dataIds = Array.from(parentElement.querySelectorAll('[data-id^="{{"][data-id$="}}"]'));
+        /** @type {Array<string>} */
+        const ids = [];
+        for(const di of dataIds){
+            if(!(di instanceof HTMLElement)) continue;
+            const unparsedID = di.dataset.id;
+            const id = unparsedID?.substring(2, unparsedID.length - 2);
+            if(!id) continue;
+            ids.push(id);
+        }
+        console.log({ids});
+        return /** @type {PAP} */ ({
+            ids
+        });
     }
 }
 
