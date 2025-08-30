@@ -17,9 +17,11 @@ class BeGiddy extends BE {
         propInfo: {
             ...propInfo,
             idString: {},
+            ids:{}
         },
         compacts: {
             when_idString_changes_call_parseIdString: 0,
+            when_ids_changes_call_autoGen: 0,
         }
     }
 
@@ -33,7 +35,7 @@ class BeGiddy extends BE {
             throw 'NI';
         }
         const {parentElement} = enhancedElement;
-        if(parentElement === null) return;
+        if(parentElement === null) throw 404;
         const dataIds = Array.from(parentElement.querySelectorAll('[data-id^="{{"][data-id$="}}"]'));
         /** @type {Array<string>} */
         const ids = [];
@@ -44,10 +46,49 @@ class BeGiddy extends BE {
             if(!id) continue;
             ids.push(id);
         }
-        console.log({ids});
+        
         return /** @type {PAP} */ ({
             ids
         });
+    }
+
+    /**
+     * 
+     * @param {AP & BEAllProps} self 
+     */
+    autoGen(self) {
+        const { ids, enhancedElement } = self;
+        const {parentElement} = enhancedElement;
+        if(parentElement === null) throw 404;
+        const allChildren = Array.from(parentElement.querySelectorAll('*'));
+        /**
+         * @type {{[key: string]: string}}
+         */
+        const idLookup = {};
+        for(const child of allChildren){
+            const attrs = child.attributes;
+            for(const attr of attrs){
+                const {name, value} = attr;
+                if(!name.startsWith('data-')) continue;
+                
+                for(const id of ids){
+                    const token = `{{${id}}}`;
+                    if(!value.includes(token)) continue;
+                    if(!(id in idLookup)){
+                        idLookup[id] = crypto.randomUUID();
+                    }
+                    const newValue = value.replaceAll(token, idLookup[id]);
+                    child.setAttribute(name.substring(5), newValue);
+                    child.removeAttribute(name);
+                }
+                    
+                
+            }
+        }
+        if('disabled' in parentElement){
+            parentElement.disabled = false;
+        }
+        console.log({ids});
     }
 }
 
