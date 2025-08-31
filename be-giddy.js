@@ -50,8 +50,11 @@ class BeGiddy extends BE {
         for(const di of dataIds){
             if(!(di instanceof HTMLElement)) continue;
             const unparsedID = di.dataset.id;
-            const id = unparsedID?.substring(2, unparsedID.length - 2);
-            if(!id) continue;
+            const inner = unparsedID?.substring(2, unparsedID.length - 2);
+            if(!inner) continue;
+            const split = inner.split(' ');
+            const id = split.length === 2 ? split[1] : split[0];
+            if(ids.includes(id)) throw 500;
             ids.push(id);
         }
         
