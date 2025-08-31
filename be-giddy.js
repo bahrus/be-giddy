@@ -7,6 +7,11 @@ import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
 import {getCount} from 'trans-render/dss/tref/getCount.js';
 import {nudge} from 'trans-render/lib/nudge.js';
 
+const attrMap = {
+    '@': 'name',
+    '|': 'itemprop',
+};
+
 /**
  * @implements {Actions}
  * 
@@ -76,18 +81,46 @@ class BeGiddy extends BE {
             for(const attr of attrs){
                 const {name, value} = attr;
                 if(!name.startsWith('data-')) continue;
-                
-                for(const id of ids){
-                    const token = `{{${id}}}`;
-                    if(!value.includes(token)) continue;
+                if(name === 'data-id'){
+                    if(!value.startsWith('{{') || !value.endsWith('}}')) continue;
+                    const inner = value.substring(2, value.length - 2);
+                    const split = inner.split(' ');
+                    const id = split.length === 2 ? split[1] : split[0];
                     if(!(id in idLookup)){
                         idLookup[id] = `${base}-${getCount(base)}`;
                     }
-                    const newValue = value.replaceAll(token, idLookup[id]);
-                    child.setAttribute(name.substring(5), newValue);
-                    child.removeAttribute(name);
+                    if(split.length === 2){
+                        const sideEffects = split[0];
+                        for(const char of sideEffects){
+                            switch(char){
+                                case '@':
+                                case '|':
+                                    child.setAttribute(attrMap[char], id);
+                                    break;
+                                case '%':
+                                    child.part.add(id);
+                                    break;
+                                case '.':
+                                    child.classList.add(id);
+                                    break;
+
+                            }
+                        }
+                    }
+                    child.id = idLookup[id];
+                    child.setAttribute('data-id', id);
+                }else{
+                    for(const id of ids){
+                        const token = `{{${id}}}`;
+                        if(!value.includes(token)) continue;
+                        if(!(id in idLookup)){
+                            idLookup[id] = `${base}-${getCount(base)}`;
+                        }
+                        const newValue = value.replaceAll(token, idLookup[id]);
+                        child.setAttribute(name.substring(5), newValue);
+                        child.removeAttribute(name);
+                    }
                 }
-                    
                 
             }
         }

@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Advanced</title>
+    <!-- #include virtual="/imports.html" -->
+    <script type=module>
+        import '/🤪.js';
+    </script>
+</head>
+<body>
+    <form>
+        <fieldset disabled >
+            <label data-for={{foo}}>foo:</label>
+            <input 
+                class=my-class 
+                part=my-part 
+                type=checkbox 
+                data-id="{{@|%.# foo}}">
+            <template defer-be-switched="on when #{{foo}}" 🤪>
+                foo is checked
+            </template>
+        </fieldset>
+    </form>
+
+</body>
+</html>
