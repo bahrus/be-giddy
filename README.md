@@ -7,6 +7,8 @@
 
 Managing uniqueness of DOM is challenging, especially outside any ShadowDOM.  be-giddy auto generates such id's (and other attributes) in a predictable way. This is a userland implementation of [this proposal](https://github.com/whatwg/html/issues/11585).
 
+[TODO] make it apply to parent element
+
 However, due to the plague of [platform](https://github.com/WICG/webcomponents/issues/809) [paralysis](https://github.com/whatwg/dom/issues/533), there are significant limitations / differences:
 
 - ID's will not be reliably reproducible, and can differ even if the html structure is the same
