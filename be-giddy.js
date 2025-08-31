@@ -70,6 +70,7 @@ class BeGiddy extends BE {
          */
         const idLookup = {};
         const {base} = emc;
+        if(!base) throw 500;
         for(const child of allChildren){
             const attrs = child.attributes;
             for(const attr of attrs){
@@ -93,7 +94,6 @@ class BeGiddy extends BE {
         if('disabled' in parentElement){
             nudge(parentElement);
         }
-        console.log({ids});
     }
 }
 
