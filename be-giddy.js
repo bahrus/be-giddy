@@ -5,7 +5,7 @@ import {dispatchEvent as de} from 'trans-render/positractions/dispatchEvent.js';
 /** @import {BEConfig, IEnhancement, BEAllProps} from './ts-refs/be-enhanced/types.d.ts' */
 /** @import {Actions, PAP, AllProps, AP} from './ts-refs/be-giddy/types' */;
 import {getCount} from 'trans-render/dss/tref/getCount.js';
-
+import {nudge} from 'trans-render/lib/nudge.js';
 
 /**
  * @implements {Actions}
@@ -19,7 +19,8 @@ class BeGiddy extends BE {
         propInfo: {
             ...propInfo,
             idString: {},
-            ids:{}
+            ids:{},
+            emc: {},
         },
         compacts: {
             when_idString_changes_call_parseIdString: 0,
@@ -59,7 +60,7 @@ class BeGiddy extends BE {
      * @param {AP & BEAllProps} self 
      */
     autoGen(self) {
-        const { ids, enhancedElement } = self;
+        const { ids, enhancedElement, emc } = self;
         const {parentElement} = enhancedElement;
         
         if(parentElement === null) throw 404;
@@ -68,7 +69,7 @@ class BeGiddy extends BE {
          * @type {{[key: string]: string}}
          */
         const idLookup = {};
-        const base = 'be-giddy';
+        const {base} = emc;
         for(const child of allChildren){
             const attrs = child.attributes;
             for(const attr of attrs){
@@ -90,7 +91,7 @@ class BeGiddy extends BE {
             }
         }
         if('disabled' in parentElement){
-            parentElement.disabled = false;
+            nudge(parentElement);
         }
         console.log({ids});
     }

@@ -21,7 +21,8 @@ export const emc = {
         /** @type {any} */
         (await import('./be-giddy.js'));
         return BeGiddy;
-    }
+    },
+    mapEmcTo: 'emc',
 }
 const mose = seed(emc);
 MountObserver.synthesize(document, BeHive, mose);
