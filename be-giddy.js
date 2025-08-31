@@ -30,8 +30,12 @@ class BeGiddy extends BE {
         compacts: {
             when_idString_changes_call_parseIdString: 0,
             when_ids_changes_call_autoGen: 0,
-        }
+            when_resolved_changes_call_retire: 0,
+        },
+        positractions: [resolved, rejected],
     }
+
+    de = de;
 
     /**
      * 
@@ -152,6 +156,19 @@ class BeGiddy extends BE {
         if('disabled' in parentElement){
             nudge(parentElement);
         }
+        return /** @type {PAP} */ ({
+            resolved: true,
+        });
+    }
+
+    /**
+     * 
+     * @param {AP & BEAllProps} self 
+     * @returns 
+     */
+    retire(self) {
+        const { enhancedElement, emc } = self;
+        enhancedElement.beEnhanced.whenDetached(emc);
     }
 }
 

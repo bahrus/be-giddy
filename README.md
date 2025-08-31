@@ -1,4 +1,4 @@
-# be-giddy (🤪) [WIP]
+# be-giddy (🤪) 
 
 "zany" emoji.
 
