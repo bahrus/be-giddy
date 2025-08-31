@@ -113,18 +113,40 @@ class BeGiddy extends BE {
                     child.id = idLookup[id];
                     child.setAttribute('data-id', id);
                 }else{
+                    let newValue = value;
                     for(const id of ids){
                         const token = `{{${id}}}`;
-                        if(!value.includes(token)) continue;
+                        if(!newValue.includes(token)) continue;
                         if(!(id in idLookup)){
                             idLookup[id] = `${base}-${getCount(base)}`;
                         }
-                        const newValue = value.replaceAll(token, idLookup[id]);
-                        child.setAttribute(name.substring(5), newValue);
-                        child.removeAttribute(name);
+                        newValue = newValue.replaceAll(token, idLookup[id]);
+                        
                     }
+                    if(newValue === value) continue;
+                    child.setAttribute(name.substring(5), newValue);
+                    child.removeAttribute(name);
                 }
                 
+            }
+            for(const attr of attrs){
+                const {name, value} = attr;
+                if(!name.startsWith('defer-')) continue;
+                const nameWithoutDefer = name.substring(6);
+                const valueWithoutDefer = child.getAttribute(nameWithoutDefer);
+                if(valueWithoutDefer === null) continue;
+                let newValue = valueWithoutDefer;
+                for(const id of ids){
+                    const token = `{{${id}}}`;
+                    if(!newValue.includes(token)) continue;
+                    if(!(id in idLookup)){
+                        idLookup[id] = `${base}-${getCount(base)}`;
+                    }
+                    newValue = newValue.replaceAll(token, idLookup[id]);
+                    
+                }
+                child.setAttribute(nameWithoutDefer, newValue);
+                nudge(child, name);
             }
         }
         if('disabled' in parentElement){
