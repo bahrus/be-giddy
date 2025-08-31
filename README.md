@@ -1,7 +1,5 @@
 # be-giddy (🤪) 
 
-"zany" emoji.
-
 Managing uniqueness of DOM is challenging, especially outside any ShadowDOM.  be-giddy auto generates such id's (and other attributes) in a predictable way. This is a userland implementation of [this proposal](https://github.com/whatwg/html/issues/11585).
 
 However, due to the plague of [platform](https://github.com/WICG/webcomponents/issues/809) [paralysis](https://github.com/whatwg/dom/issues/533), there are significant limitations / differences:
@@ -13,6 +11,19 @@ However, due to the plague of [platform](https://github.com/WICG/webcomponents/i
 
 
 ## Basic functionality
+
+Using the canonical name:
+
+```html
+<fieldset disabled>
+    <label data-for={{isHappy}}>Is Happy:</label>
+    <input data-id={{isHappy}}>
+    <label data-for={{isGiddy}}>Is Giddy:</label>
+    <input data-id={{isGiddy}}  be-giddy>
+</fieldset>
+```
+
+or in less formal environments, by referencing 🤪.js:
 
 ```html
 <fieldset disabled>
@@ -34,6 +45,8 @@ the HTML gets modified to the following:
     <input id=unique-id-2>
 </fieldset>
 ```
+
+To find the 🤪 on windows, type flying window + . and search for zany.
 
 ## Advanced functionality
 
@@ -69,4 +82,31 @@ generates:
         foo is checked
     </template>
 </fieldset>
+```
+
+## Viewing Locally
+
+Any web server that serves static files (html, css, js) will do but...
+
+1.  Install git.
+2.  Fork/clone this repo.
+3.  Install node.
+4.  Install Python 3 or later
+5.  Open command window to folder where you cloned this repo.
+6.  > npm install
+7.  > npm run serve
+8.  Open http://localhost:8000/demo in a modern browser.
+
+## Importing in ES Modules:
+
+```JavaScript
+import 'be-a-beacon/be-giddy.js';
+```
+
+## Using from CDN:
+
+```html
+<script type=module crossorigin=anonymous>
+    import 'https://esm.run/be-giddy';
+</script>
 ```
