@@ -77,6 +77,7 @@ class BeGiddy extends BE {
         
         if(parentElement === null) throw 404;
         const allChildren = Array.from(parentElement.querySelectorAll('*'));
+        allChildren.push(parentElement);
         /**
          * @type {{[key: string]: string}}
          */

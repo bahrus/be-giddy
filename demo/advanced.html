@@ -10,7 +10,7 @@
     </script>
 </head>
 <body>
-    <form>
+    <form data-id={{bar}}>
         <fieldset disabled >
             <label data-for={{foo}}>foo:</label>
             <input 
@@ -18,10 +18,11 @@
                 part=my-part 
                 type=checkbox 
                 data-id="{{@|%.# foo}}">
-            <template defer-be-switched be-switched="on when #{{foo}}" 🤪>
+            <template defer-be-switched be-switched="on when #{{foo}}" >
                 foo is checked
             </template>
         </fieldset>
+        <template 🤪></template>
     </form>
 
 </body>
