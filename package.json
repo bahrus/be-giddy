@@ -1,6 +1,6 @@
 {
   "name": "be-giddy",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "Auto generate id's and other attributes",
   "homepage": "https://github.com/bahrus/be-giddy#readme",
   "bugs": {
