@@ -5,7 +5,7 @@
 [![How big is this package in your project?](https://img.shields.io/bundlephobia/minzip/be-giddy?style=for-the-badge)](https://bundlephobia.com/result?p=be-giddy)
 <img src="http://img.badgesize.io/https://cdn.jsdelivr.net/npm/be-giddy?compression=gzip">
 
-Managing uniqueness of DOM is challenging, especially outside any ShadowDOM.  be-giddy auto generates such id's (and other attributes) in a predictable way. This is a userland implementation of [this proposal](https://github.com/whatwg/html/issues/11585).
+Managing uniqueness of DOM id's is challenging, especially outside any ShadowDOM.  be-giddy auto generates such id's (and other attributes) in a predictable way. This is a userland implementation of [this proposal](https://github.com/whatwg/html/issues/11585).
 
 However, due to the plague of [platform](https://github.com/WICG/webcomponents/issues/809) [paralysis](https://github.com/whatwg/dom/issues/533), there are significant limitations / differences:
 
@@ -104,7 +104,7 @@ If a tag name is unique within the scope of a be-giddy id generation, then it ca
 generates:
 
 ```html
-<fieldset disabled>
+<fieldset>
     <label data-for=my-unique-id>foo:</label>
     <input id=my-unique-id data-id=input>
     <template defer-be-switched be-switched="on when #my-unique-id" 🤪>
@@ -128,7 +128,7 @@ generates:
 generates:
 
 ```html
-<fieldset disabled>
+<fieldset>
     <label data-for=my-unique-id>foo:</label>
     <input id=my-unique-id data-id=input name=input class=input part=input type=checkbox>
     <template defer-be-switched be-switched="on when #my-unique-id" 🤪>
