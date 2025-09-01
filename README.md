@@ -87,6 +87,10 @@ generates:
 </fieldset>
 ```
 
+## Super advanced functionality [TODO]
+
+If a tag name is unique within the scope of a be-giddy
+
 ## Viewing Locally
 
 Any web server that serves static files (html, css, js) will do but...
