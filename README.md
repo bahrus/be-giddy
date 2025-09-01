@@ -92,13 +92,9 @@ generates:
 If a tag name is unique within the scope of a be-giddy id generation, then it can be used to reference by name as follows:
 
 ```html
-<fieldset disabled  data-id={{^}}>
+<fieldset disabled>
     <label data-for={{input}}>foo:</label>
-    <input 
-        class=my-class 
-        part=my-part 
-        type=checkbox 
-        data-id="{{@|%.# ^}}">
+    <input # type=checkbox>
     <template defer-be-switched be-switched="on when #{{input}}" 🤪>
         foo is checked
     </template>
@@ -107,19 +103,39 @@ If a tag name is unique within the scope of a be-giddy id generation, then it ca
 
 generates:
 
-<fieldset disabled  data-id=fieldset id=my-unique-id-1>
-    <label data-for=my-unique-id-2>foo:</label>
-    <input 
-        class="my-class input" 
-        part="my-part input"
-        name="input"
-        data-id="input"
-        id="my-unique-id-2" 
-        type=checkbox >
-    <template defer-be-switched be-switched="on when #my-unique-id-2" 🤪>
+```html
+<fieldset disabled>
+    <label data-for=my-unique-id>foo:</label>
+    <input id=my-unique-id data-id=input>
+    <template defer-be-switched be-switched="on when #my-unique-id" 🤪>
         foo is checked
     </template>
 </fieldset>
+```
+
+## Super duper advanced functionality [TODO]
+
+```html
+<fieldset disabled>
+    <label data-for={{input}}>foo:</label>
+    <input #=@|.% type=checkbox>
+    <template defer-be-switched be-switched="on when #{{input}}" 🤪>
+        foo is checked
+    </template>
+</fieldset>
+```
+
+generates:
+
+```html
+<fieldset disabled>
+    <label data-for=my-unique-id>foo:</label>
+    <input id=my-unique-id data-id=input name=input class=input part=input type=checkbox>
+    <template defer-be-switched be-switched="on when #my-unique-id" 🤪>
+        foo is checked
+    </template>
+</fieldset>
+```
 
 ## Viewing Locally
 
