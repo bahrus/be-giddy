@@ -1,6 +1,11 @@
 {
   "name": "be-giddy",
   "version": "0.0.3",
+  "keywords":[
+    "custom-enhancement",
+    "id-generator",
+    "id-autoGen"
+  ],
   "description": "Auto generate id's and other attributes",
   "homepage": "https://github.com/bahrus/be-giddy#readme",
   "bugs": {
@@ -14,6 +19,17 @@
   "author": "Bruce B. Anderson <anderson.bruce.b@gmail.com>",
   "type": "module",
   "main": "be-giddy.js",
+  "module": "be-giddy.js",
+  "exports": {
+    ".": "./be-giddy.js",
+    "./be-giddy.js": "./be-giddy.js",
+    "./emc.js": "./emc.js",
+    "./🤪.js": "./🤪.js"
+  },
+  "files": [
+    "*.js",
+    "/ts-refs/be-giddy/types.d.ts"
+  ],
   "scripts": {
     "test": "playwright test",
     "serve": "python ./node_modules/ssi-server/ssi_server.py",
