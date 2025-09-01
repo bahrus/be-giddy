@@ -48,6 +48,19 @@ class BeGiddy extends BE {
         }
         const {parentElement} = enhancedElement;
         if(parentElement === null) throw 404;
+
+        //first find all elements with attribute #
+        const hashIds = Array.from(parentElement.querySelectorAll('[#]'));
+        const uniqueCheck = new Set();
+        for(const hi of hashIds){
+            if(!(hi instanceof HTMLElement)) continue;
+            const {localName} = hi;
+            if(uniqueCheck.has(localName)) throw 500;
+            uniqueCheck.add(localName);
+            hi.dataset.id = `{{${localName}}}`;
+            hi.removeAttribute('#');
+        }
+
         const dataIds = Array.from(parentElement.querySelectorAll('[data-id^="{{"][data-id$="}}"]'));
         /** @type {Array<string>} */
         const ids = [];
