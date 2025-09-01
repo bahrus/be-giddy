@@ -57,7 +57,12 @@ class BeGiddy extends BE {
             const {localName} = hi;
             if(uniqueCheck.has(localName)) throw 500;
             uniqueCheck.add(localName);
-            hi.dataset.id = `{{${localName}}}`;
+            let sideEffects = '';
+            const hashValue = hi.getAttribute('#');
+            if(hashValue){
+                sideEffects = `${hashValue} `;
+            }
+            hi.dataset.id = `{{${sideEffects}${localName}}}`;
             hi.removeAttribute('#');
         }
 

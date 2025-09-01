@@ -87,7 +87,7 @@ generates:
 </fieldset>
 ```
 
-## Super advanced functionality [TODO]
+## Super advanced functionality
 
 If a tag name is unique within the scope of a be-giddy id generation, then it can be used to reference by name as follows:
 
@@ -113,7 +113,7 @@ generates:
 </fieldset>
 ```
 
-## Super duper advanced functionality [TODO]
+## Super duper advanced functionality
 
 ```html
 <fieldset disabled>
