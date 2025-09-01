@@ -50,7 +50,7 @@ class BeGiddy extends BE {
         if(parentElement === null) throw 404;
 
         //first find all elements with attribute #
-        const hashIds = Array.from(parentElement.querySelectorAll('[#]'));
+        const hashIds = Array.from(parentElement.querySelectorAll('[\\#]'));
         const uniqueCheck = new Set();
         for(const hi of hashIds){
             if(!(hi instanceof HTMLElement)) continue;
