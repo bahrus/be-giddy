@@ -89,7 +89,37 @@ generates:
 
 ## Super advanced functionality [TODO]
 
-If a tag name is unique within the scope of a be-giddy
+If a tag name is unique within the scope of a be-giddy id generation, then it can be used to reference by name as follows:
+
+```html
+<fieldset disabled  data-id={{^}}>
+    <label data-for={{input}}>foo:</label>
+    <input 
+        class=my-class 
+        part=my-part 
+        type=checkbox 
+        data-id="{{@|%.# ^}}">
+    <template defer-be-switched be-switched="on when #{{input}}" 🤪>
+        foo is checked
+    </template>
+</fieldset>
+```
+
+generates:
+
+<fieldset disabled  data-id=fieldset id=my-unique-id-1>
+    <label data-for=my-unique-id-2>foo:</label>
+    <input 
+        class="my-class input" 
+        part="my-part input"
+        name="input"
+        data-id="input"
+        id="my-unique-id-2" 
+        type=checkbox >
+    <template defer-be-switched be-switched="on when #my-unique-id-2" 🤪>
+        foo is checked
+    </template>
+</fieldset>
 
 ## Viewing Locally
 
