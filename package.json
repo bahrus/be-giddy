@@ -1,7 +1,7 @@
 {
   "name": "be-giddy",
-  "version": "0.0.3",
-  "keywords":[
+  "version": "0.0.4",
+  "keywords": [
     "custom-enhancement",
     "id-generator",
     "id-autoGen"
