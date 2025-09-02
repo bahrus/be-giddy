@@ -156,9 +156,12 @@ class BeGiddy extends BE {
                 const {name, value} = attr;
                 if(!name.startsWith('defer-')) continue;
                 const nameWithoutDefer = name.substring(6);
-                const valueWithoutDefer = child.getAttribute(nameWithoutDefer);
-                if(valueWithoutDefer === null) continue;
+                const attrWithoutDefer = child.getAttributeNode(nameWithoutDefer);
+                if(attrWithoutDefer === null) continue;
+                const valueWithoutDefer = attrWithoutDefer.value;
+                
                 let newValue = valueWithoutDefer;
+                let changeMade = false;
                 for(const id of ids){
                     const token = `{{${id}}}`;
                     if(!newValue.includes(token)) continue;
@@ -166,9 +169,11 @@ class BeGiddy extends BE {
                         idLookup[id] = `${base}-${getCount(base)}`;
                     }
                     newValue = newValue.replaceAll(token, idLookup[id]);
+                    changeMade = true;
                     
                 }
-                child.setAttribute(nameWithoutDefer, newValue);
+                //child.setAttribute(nameWithoutDefer, newValue);
+                if(changeMade) attrWithoutDefer.value = newValue;
                 nudge(child, name);
             }
         }
